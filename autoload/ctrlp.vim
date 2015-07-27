@@ -440,7 +440,8 @@ fu! s:lsCmd()
 endf
 " - Buffers {{{1
 fu! ctrlp#buffers(...)
-	let ids = sort(filter(range(1, bufnr('$')), 'empty(getbufvar(v:val, "&bt"))'
+	let ids = sort(filter(range(1, bufnr('$')), '(empty(getbufvar(v:val, "&bt"))'
+		\ .' || getbufvar(v:val, "&bt") == "terminal")'
 		\ .' && getbufvar(v:val, "&bl")'), 's:compmreb')
 	if a:0 && a:1 == 'id'
 		retu ids
